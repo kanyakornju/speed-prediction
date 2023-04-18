@@ -1,4 +1,7 @@
-import pickle
+import matplotlib.pyplot as plt
+import argparse
+
+import pandas as pd
 import matplotlib.pyplot as plt
 import argparse
 
@@ -10,29 +13,18 @@ args = argparser.parse_args()
 
 # parse arguments
 NAME = args.filename
+# read loss values from CSV file
+history = pd.read_csv(NAME)
 
-history = pickle.load(open(NAME, 'rb'))
+loss_history = history['loss']
+val_loss_history = history['val_loss']
 
-# summarize history for accuracy
-try:
-    plt.plot(history['acc'])
-    plt.plot(history['val_acc'])
-    plt.title('model accuracy')
-    plt.ylabel('accuracy')
-    plt.xlabel('epoch')
-    plt.legend(['train', 'test'], loc='upper left')
-    plt.show()
-except:
-    pass
-
-# summarize history for loss
-try:
-    plt.plot(history['loss'])
-    plt.plot(history['val_loss'])
-    plt.title('model loss')
-    plt.ylabel('loss')
-    plt.xlabel('epoch')
-    plt.legend(['train', 'test'], loc='upper left')
-    plt.show()
-except:
-    pass
+# plot and save figure
+plt.plot(loss_history)
+plt.plot(val_loss_history)
+plt.title('model loss')
+plt.ylabel('loss')
+plt.xlabel('epoch')
+plt.legend(['train', 'val'], loc='upper left')
+plt.savefig('loss_plot.png', dpi=300, bbox_inches='tight')
+plt.show()
