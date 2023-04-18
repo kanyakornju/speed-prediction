@@ -1,2 +1,2 @@
-# speed prediction for decision process in self-driving car
+# speed prediction for decision support in self-driving car
 our project still in progress
