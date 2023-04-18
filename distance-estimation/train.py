@@ -54,7 +54,10 @@ def main():
         monitor='val_loss', factor=0.1, patience=7, verbose=1, epsilon=1e-4, mode='min')
     modelname = "model@{}".format(int(time.time()))
     tensorboard = TensorBoard(log_dir="logs/{}".format(modelname))
-
+    
+    loss = []
+    val_loss = []
+    
     # start training
     history = model.fit(x_train, y_train, validation_split=0.2,
                         epochs=100, batch_size=32, callbacks=[tensorboard], verbose=1)
@@ -66,6 +69,11 @@ def main():
 
     model.save_weights(os.path.join(results_dir, "{}.h5".format(modelname)))
     print("Saved model to disk")
+
+    # save model loss and validation loss 
+    history_dict = {'loss': loss, 'val_loss': val_loss}
+    df_history = pd.DataFrame(history_dict)
+    df_history.to_csv(os.path.join(results_dir, '{}_results.csv'.format
 
 
 if __name__ == '__main__':
