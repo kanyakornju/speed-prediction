@@ -61,6 +61,9 @@ def main():
     # start training
     history = model.fit(x_train, y_train, validation_split=0.2,
                         epochs=100, batch_size=32, callbacks=[tensorboard], verbose=1)
+    
+    loss = history.history['loss']
+    val_loss = history.history['val_loss']
 
     # save model and weights
     model_json = model.to_json()
