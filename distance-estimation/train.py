@@ -76,7 +76,7 @@ def main():
     # save model loss and validation loss 
     history_dict = {'loss': loss, 'val_loss': val_loss}
     df_history = pd.DataFrame(history_dict)
-    df_history.to_csv(os.path.join(results_dir, '{}_results.csv'.format
+    df_history.to_csv(os.path.join(results_dir, '{}_results.csv'.format(modelname)))
 
 
 if __name__ == '__main__':
