@@ -1,14 +1,20 @@
 from model import CNNModel
 import cv2
+import argparse
 import sys
 import time
 import numpy as np
 from frames_to_opticalFlow import convertToOptical
 import matplotlib.pyplot as plt
 
+argparser = argparse.ArgumentParser(description='training optical flow model')
+argparser.add_argument('--test', help='test video path')
+args = argparser.parse_args()
+test_video = args.test
+
 PATH_DATA_FOLDER = './data/'
 PATH_TEST_LABEL = PATH_DATA_FOLDER +  'test.txt'
-PATH_TEST_VIDEO = PATH_DATA_FOLDER + 'test.mp4'
+PATH_TEST_VIDEO = test_video  #change to your test video
 PATH_TEST_VIDEO_OUTPUT = PATH_DATA_FOLDER + 'test_output.mp4'
 PATH_COMBINED_TEST_VIDEO_OUTPUT = PATH_DATA_FOLDER + 'combined_test_output.mp4'
 PATH_TEST_IMAGES_FOLDER = PATH_DATA_FOLDER +  'test_images/'
