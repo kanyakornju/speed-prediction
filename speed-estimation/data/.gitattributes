@@ -1,3 +1,0 @@
-*.mp4 filter=lfs diff=lfs merge=lfs -text
-/Users/gibssi/Downloads/train.mp4 filter=lfs diff=lfs merge=lfs -text
-/Users/gibssi/Downloads/*.mp4 filter=lfs diff=lfs merge=lfs -text
