@@ -41,8 +41,11 @@ def main():
     # create model
     model = tf.keras.Sequential()
     model.add(tf.keras.layers.Dense(64, input_dim=4, kernel_initializer='normal', activation='relu'))
+    model.add(tf.keras.layers.Dropout(0.2))
     model.add(tf.keras.layers.Dense(32, kernel_initializer='normal', activation='relu'))
+    model.add(tf.keras.layers.Dropout(0.2))
     model.add(tf.keras.layers.Dense(16, kernel_initializer='normal', activation='relu'))
+    model.add(tf.keras.layers.Dropout(0.2))
     model.add(tf.keras.layers.Dense(1, kernel_initializer='normal'))
 
     model.compile(loss='mean_squared_error', optimizer='adam')
@@ -54,10 +57,16 @@ def main():
         monitor='val_loss', factor=0.1, patience=7, verbose=1, epsilon=1e-4, mode='min')
     modelname = "model@{}".format(int(time.time()))
     tensorboard = TensorBoard(log_dir="logs/{}".format(modelname))
-
+    
+    loss = []
+    val_loss = []
+    
     # start training
     history = model.fit(x_train, y_train, validation_split=0.2,
                         epochs=100, batch_size=32, callbacks=[tensorboard], verbose=1)
+    
+    loss = history.history['loss']
+    val_loss = history.history['val_loss']
 
     # save model and weights
     model_json = model.to_json()
@@ -66,6 +75,11 @@ def main():
 
     model.save_weights(os.path.join(results_dir, "{}.h5".format(modelname)))
     print("Saved model to disk")
+
+    # save model loss and validation loss 
+    history_dict = {'loss': loss, 'val_loss': val_loss}
+    df_history = pd.DataFrame(history_dict)
+    df_history.to_csv(os.path.join(results_dir, '{}_results.csv'.format(modelname)))
 
 
 if __name__ == '__main__':

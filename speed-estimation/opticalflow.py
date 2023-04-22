@@ -1,7 +1,13 @@
 import cv2
+import argparse
 import os, time, sys, shutil
 import numpy as np
 from frames_to_opticalFlow import convertToOptical
+
+argparser = argparse.ArgumentParser(description='training optical flow model')
+argparser.add_argument('--test', help='test video path')
+args = argparser.parse_args()
+test_video = args.test
 
 PATH_DATA_FOLDER = './data/'
 
@@ -14,7 +20,7 @@ PATH_TRAIN_IMAGES_FOLDER = PATH_DATA_FOLDER +  'train_images/'
 PATH_TRAIN_IMAGES_FLOW_FOLDER = PATH_DATA_FOLDER +  'train_images_flow/'
 
 PATH_TEST_LABEL = PATH_DATA_FOLDER +  'test.txt'
-PATH_TEST_VIDEO = PATH_DATA_FOLDER + 'test.mp4' #change to your test video
+PATH_TEST_VIDEO = test_video  #change to your test video
 PATH_TEST_FLOW_VIDEO = PATH_DATA_FOLDER + 'flow_test.mp4'
 PATH_TEST_IMAGES_FOLDER = PATH_DATA_FOLDER +  'test_images/'
 PATH_TEST_IMAGES_FLOW_FOLDER = PATH_DATA_FOLDER +  'test_images_flow/'
