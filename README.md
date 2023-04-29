@@ -3,7 +3,7 @@
 
 Aim of this project is to create **Assistance system** for the driver in Autonomous Bus public transportation. We have use Deep learning to create the model for object detection(CNN), distance estimation(ANN), and speed estimation(CNN) to get object, distance, and speed from monocular camera. The final result will be used as an input for predicting the speed of the car by using Artificial Neural Network model.
 
-To evaluate the result of the model, we have used Mean Squared Error, and Mean Squared Logarithms Error. The results showed that... as the figure below
+To evaluate the result of the model, we have used Mean Mean Squared Logarithms Error. The results showed that... as the figure below
 
 # Acknowledgement
 the code from this project modified from:
