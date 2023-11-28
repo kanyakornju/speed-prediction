@@ -1,7 +1,11 @@
 # speed prediction for decision support in self-driving car
-*our project is still in progress*
+*This project in progress*
 
 Aim of this project is to create **Assistance system** for the driver in Autonomous Bus public transportation. We have use Deep learning to create the model for object detection(CNN), distance estimation(DNN), and speed estimation(CNN) to get object, distance, and speed from monocular camera. The final result will be used as an input for predicting the speed of the car by using Deep Neural Network model.
+
+# Google Colab
+
+https://colab.research.google.com/drive/19d-I74OXwJFeljJ75lYRixTEJB-NHjQN?authuser=2
 
 
 # Acknowledgement
